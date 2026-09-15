@@ -1,59 +1,107 @@
-# St3pLearnFe
+# St3pLearn Frontend (`st3p-learn-frontend`)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
+This repository contains the Angular frontend foundation for the **St3pLearn** learning platform.
 
-## Development server
+## 1. Project Overview
 
-To start a local development server, run:
+The `st3p-learn-frontend` project is built using modern Angular architecture (Standalone components, Standalone routing, SCSS styling foundation, strict TypeScript). It communicates with the backend microservices ecosystem through a centralized API Gateway (`http://localhost:8080`).
 
-```bash
-ng serve
-```
+## 2. Technology Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Framework**: Angular 21 (Standalone Architecture)
+- **Language**: TypeScript (Strict Mode)
+- **Routing**: Angular Router (Standalone Routing)
+- **Styles**: SCSS / Sass (Modern `@use` / `@forward` Architecture)
+- **Linting & Formatting**: ESLint (`@angular-eslint`) & Prettier
+- **Package Manager**: npm
 
-## Code scaffolding
+## 3. Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Node.js**: `>= 20.0.0`
+- **npm**: `>= 10.0.0`
 
-```bash
-ng generate component component-name
-```
+## 4. Installation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Clone the repository and install dependencies:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 5. Development Server
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Run the development server:
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-For end-to-end (e2e) testing, run:
+## 6. Production Build
+
+Build the project for production:
 
 ```bash
-ng e2e
+npm run build:prod
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The build artifacts will be stored in the `dist/` directory.
 
-## Additional Resources
+## 7. Linting
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run ESLint to check for code quality and template issues:
+
+```bash
+npm run lint
+```
+
+## 8. Code Formatting
+
+Check formatting with Prettier:
+
+```bash
+npm run format:check
+```
+
+Format code automatically with Prettier:
+
+```bash
+npm run format
+```
+
+## 9. Project Structure
+
+```text
+src/
+├── app/
+│   ├── core/           # Infrastructure & application-wide services (config, auth, guards, interceptors, models, services)
+│   ├── shared/         # Reusable building blocks (components, directives, pipes, validators, types)
+│   ├── layouts/        # Layout wrappers (public-layout, main-layout, admin-layout)
+│   ├── features/       # Business feature domains (auth, home, courses, learning, payment, profile, admin)
+│   ├── app.component.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.config.ts
+│   └── app.routes.ts
+│
+├── environments/       # Environment configurations (environment.ts, environment.prod.ts)
+│
+├── styles/             # Global SCSS Architecture
+│   ├── abstracts/      # SCSS variables, mixins, functions
+│   ├── base/           # CSS reset, typography defaults
+│   └── _index.scss     # SCSS architecture entrypoint
+│
+├── assets/             # Static assets
+├── index.html
+├── main.ts
+└── styles.scss
+```
+
+## 10. Architecture Principles
+
+1. **Standalone Architecture**: Employs standalone components, directives, and routing without legacy `NgModule` boilerplate.
+2. **Modular SCSS Structure**: Global styles follow modular SCSS architecture (`abstracts` and `base`) using `@use` / `@forward` rules.
+3. **Gateway-Centric API Configuration**: All environment configurations target the unified API Gateway (`http://localhost:8080`), prohibiting hardcoded microservice ports.
+4. **Strict Type Safety**: Strict TypeScript compiler checks enabled to ensure high code quality.
+5. **Clean Separation of Concerns**: Core infrastructure (`@core`), shared utilities (`@shared`), layout wrappers (`@layouts`), and business domain modules (`@features`) remain distinctly isolated.
