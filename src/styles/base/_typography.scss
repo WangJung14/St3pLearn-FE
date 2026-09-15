@@ -1,0 +1,11 @@
+// Base Typography Defaults
+@use '../abstracts/variables' as vars;
+
+body {
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-base;
+  line-height: vars.$line-height-base;
+  color: vars.$color-text;
+  background-color: vars.$color-bg;
+  -webkit-font-smoothing: antialiased;
+}
