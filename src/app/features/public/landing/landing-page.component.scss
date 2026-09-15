@@ -1,0 +1,273 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins' as mix;
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-2xl;
+}
+
+.hero-section {
+  padding: vars.$spacing-2xl 0;
+  background: linear-gradient(135deg, vars.$color-slate-900 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: vars.$radius-xl;
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 vars.$spacing-xl;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-xl;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: vars.$spacing-xs;
+    padding: vars.$spacing-xs vars.$spacing-md;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: vars.$radius-full;
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-medium;
+    margin-bottom: vars.$spacing-md;
+
+    &__icon {
+      width: 1rem;
+      height: 1rem;
+      color: vars.$color-primary-400;
+    }
+  }
+
+  .hero-title {
+    font-family: vars.$font-family-heading;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: vars.$spacing-md;
+
+    .highlight {
+      background: linear-gradient(135deg, vars.$color-primary-400 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: vars.$font-size-lg;
+    color: vars.$color-slate-300;
+    line-height: vars.$line-height-relaxed;
+    margin-bottom: vars.$spacing-xl;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: vars.$spacing-md;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+
+    .hero-card-preview {
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: vars.$radius-xl;
+      padding: vars.$spacing-xl;
+      max-width: 360px;
+
+      &__badge {
+        display: inline-block;
+        font-size: vars.$font-size-xs;
+        font-weight: vars.$font-weight-semibold;
+        background-color: vars.$color-primary-500;
+        color: #ffffff;
+        padding: 0.2rem 0.6rem;
+        border-radius: vars.$radius-sm;
+        margin-bottom: vars.$spacing-md;
+      }
+
+      &__icon {
+        font-size: 2.5rem;
+        margin-bottom: vars.$spacing-sm;
+      }
+
+      &__title {
+        font-size: vars.$font-size-lg;
+        font-weight: vars.$font-weight-bold;
+        margin-bottom: vars.$spacing-xs;
+      }
+
+      &__text {
+        font-size: vars.$font-size-sm;
+        color: vars.$color-slate-300;
+      }
+    }
+  }
+}
+
+.stats-section {
+  background-color: #ffffff;
+  border-radius: vars.$radius-xl;
+  padding: vars.$spacing-xl;
+  border: 1px solid vars.$color-slate-200;
+  @include mix.elevation('sm');
+
+  .stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: vars.$spacing-lg;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+
+    &__value {
+      font-family: vars.$font-family-heading;
+      font-size: vars.$font-size-2xl;
+      font-weight: 800;
+      color: vars.$color-primary-600;
+      margin-bottom: vars.$spacing-xs;
+    }
+
+    &__label {
+      font-size: vars.$font-size-sm;
+      color: vars.$color-slate-600;
+    }
+  }
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 vars.$spacing-md;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: vars.$spacing-xl;
+
+  &--between {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: left;
+  }
+}
+
+.section-title {
+  font-family: vars.$font-family-heading;
+  font-size: vars.$font-size-2xl;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-slate-900;
+  margin-bottom: vars.$spacing-xs;
+}
+
+.section-subtitle {
+  font-size: vars.$font-size-base;
+  color: vars.$color-slate-600;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: vars.$spacing-md;
+
+  .category-card {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-md;
+    padding: vars.$spacing-md;
+    background-color: #ffffff;
+    border: 1px solid vars.$color-slate-200;
+    border-radius: vars.$radius-lg;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: vars.$color-primary-500;
+      @include mix.elevation('md');
+    }
+
+    &__icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: vars.$radius-md;
+      background-color: vars.$color-primary-50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      color: vars.$color-primary-600;
+    }
+
+    &__name {
+      font-size: vars.$font-size-base;
+      font-weight: vars.$font-weight-semibold;
+      color: vars.$color-slate-900;
+    }
+
+    &__count {
+      font-size: vars.$font-size-xs;
+      color: vars.$color-slate-500;
+    }
+  }
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: vars.$spacing-lg;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: vars.$spacing-lg;
+
+  .value-card {
+    padding: vars.$spacing-xl;
+    background-color: #ffffff;
+    border: 1px solid vars.$color-slate-200;
+    border-radius: vars.$radius-xl;
+    text-align: center;
+
+    &__icon {
+      font-size: 2.5rem;
+      margin-bottom: vars.$spacing-md;
+    }
+
+    &__title {
+      font-size: vars.$font-size-lg;
+      font-weight: vars.$font-weight-bold;
+      color: vars.$color-slate-900;
+      margin-bottom: vars.$spacing-xs;
+    }
+
+    &__text {
+      font-size: vars.$font-size-sm;
+      color: vars.$color-slate-600;
+      line-height: vars.$line-height-relaxed;
+    }
+  }
+}

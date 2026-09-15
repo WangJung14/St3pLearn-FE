@@ -8,6 +8,10 @@ export const routes: Routes = [
     component: PublicLayoutComponent,
     children: [
       {
+        path: '',
+        loadComponent: () => import('./features/public/landing/landing-page.component').then((m) => m.LandingPageComponent),
+      },
+      {
         path: '403',
         loadComponent: () => import('./features/error-page/error-page.component').then((m) => m.ErrorPageComponent),
         data: { errorCode: '403' },
