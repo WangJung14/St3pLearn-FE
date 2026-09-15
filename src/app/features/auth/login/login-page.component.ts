@@ -28,6 +28,7 @@ export class LoginPageComponent {
   private readonly router = inject(Router);
 
   readonly isLoading = signal<boolean>(false);
+  readonly errorMessage = signal<string | null>(null);
 
   readonly loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,8 +36,13 @@ export class LoginPageComponent {
   });
 
   onSubmit(): void {
+    this.errorMessage.set(null);
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+      const msg = 'Vui lòng nhập đầy đủ email hợp lệ và mật khẩu (tối thiểu 6 ký tự).';
+      this.errorMessage.set(msg);
+      this.toastService.warning(msg);
       return;
     }
 
@@ -51,7 +57,16 @@ export class LoginPageComponent {
       },
       error: (err) => {
         this.isLoading.set(false);
-        const errorMsg = err?.error?.message || 'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!';
+        let errorMsg = 'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!';
+        if (err?.status === 0) {
+          errorMsg = '[Lỗi kết nối Backend] Không thể kết nối tới server http://localhost:8080. Vui lòng kiểm tra backend!';
+        } else if (err?.error?.message) {
+          errorMsg = `[Mã lỗi ${err.status || 400}] ${err.error.message}`;
+        } else if (err?.status) {
+          errorMsg = `[Mã lỗi ${err.status}] Đăng nhập không thành công. Mật khẩu hoặc Email không chính xác.`;
+        }
+
+        this.errorMessage.set(errorMsg);
         this.toastService.error(errorMsg);
       },
     });

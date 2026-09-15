@@ -71,6 +71,32 @@
   }
 }
 
+.auth-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: vars.$spacing-xs;
+  padding: vars.$spacing-md;
+  border-radius: vars.$radius-md;
+  font-size: vars.$font-size-xs;
+  margin-bottom: vars.$spacing-md;
+  line-height: vars.$line-height-relaxed;
+
+  &--error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+  }
+
+  &__icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+  }
+}
+
 .error-msg {
   display: block;
   font-size: vars.$font-size-xs;
