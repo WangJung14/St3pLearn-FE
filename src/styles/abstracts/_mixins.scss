@@ -1,6 +1,56 @@
-// Abstract Mixins - Foundation Phase Only
+// Global SCSS Mixins - St3p-Learn Platform
+@use 'variables' as vars;
+
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: vars.$breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: vars.$breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: vars.$breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: vars.$breakpoint-xl) { @content; }
+  }
+}
+
+@mixin elevation($level) {
+  @if $level == 'sm' {
+    box-shadow: vars.$shadow-sm;
+  } @else if $level == 'md' {
+    box-shadow: vars.$shadow-md;
+  } @else if $level == 'lg' {
+    box-shadow: vars.$shadow-lg;
+  } @else if $level == 'xl' {
+    box-shadow: vars.$shadow-xl;
+  }
+}
+
+@mixin focus-visible-outline {
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary-500;
+    outline-offset: 2px;
+  }
+}
+
+@mixin touch-target {
+  min-width: vars.$touch-target-min;
+  min-height: vars.$touch-target-min;
 }

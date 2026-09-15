@@ -1,4 +1,10 @@
-// Abstract Functions - Foundation Phase Only
+// Global SCSS Functions - St3p-Learn Platform
+@use 'sass:math';
+
 @function rem($pixels) {
-  @return calc($pixels / 16px) * 1rem;
+  @if math.is-unitless($pixels) {
+    @return math.div($pixels, 16) * 1rem;
+  } @else {
+    @return math.div($pixels, 16px) * 1rem;
+  }
 }
