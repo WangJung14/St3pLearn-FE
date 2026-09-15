@@ -1,0 +1,106 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins' as mix;
+
+.toast-container {
+  position: fixed;
+  top: vars.$spacing-md;
+  right: vars.$spacing-md;
+  z-index: vars.$z-toast;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-sm;
+  max-width: 400px;
+  width: calc(100% - 2 * #{vars.$spacing-md});
+  pointer-events: none;
+
+  .toast {
+    display: flex;
+    align-items: flex-start;
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-md;
+    border-radius: vars.$radius-md;
+    background-color: #ffffff;
+    border-left: 4px solid vars.$color-slate-400;
+    @include mix.elevation('md');
+    pointer-events: auto;
+    animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.toast-success {
+      border-left-color: vars.$color-success;
+      .toast-icon { color: vars.$color-success; }
+    }
+
+    &.toast-error {
+      border-left-color: vars.$color-danger;
+      .toast-icon { color: vars.$color-danger; }
+    }
+
+    &.toast-warning {
+      border-left-color: vars.$color-warning;
+      .toast-icon { color: vars.$color-warning; }
+    }
+
+    &.toast-info {
+      border-left-color: vars.$color-info;
+      .toast-icon { color: vars.$color-info; }
+    }
+
+    .toast-icon {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.125rem;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .toast-body {
+      flex: 1;
+
+      .toast-title {
+        font-family: vars.$font-family-heading;
+        font-size: vars.$font-size-sm;
+        font-weight: vars.$font-weight-semibold;
+        color: vars.$color-slate-900;
+        margin-bottom: 0.125rem;
+      }
+
+      .toast-message {
+        font-size: vars.$font-size-xs;
+        color: vars.$color-slate-600;
+        line-height: vars.$line-height-base;
+      }
+    }
+
+    .toast-close-btn {
+      flex-shrink: 0;
+      padding: 0.25rem;
+      color: vars.$color-slate-400;
+      border-radius: vars.$radius-sm;
+
+      &:hover {
+        color: vars.$color-slate-700;
+        background-color: vars.$color-slate-100;
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

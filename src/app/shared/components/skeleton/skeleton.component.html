@@ -1,0 +1,10 @@
+<div
+  class="skeleton"
+  [class.skeleton-text]="variant() === 'text'"
+  [class.skeleton-rect]="variant() === 'rect'"
+  [class.skeleton-circle]="variant() === 'circle'"
+  [style.width]="width()"
+  [style.height]="height()"
+  [style.border-radius]="borderRadius() || null"
+  aria-hidden="true"
+></div>

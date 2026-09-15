@@ -1,0 +1,42 @@
+// Base Utility Classes
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mix;
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.touch-target {
+  @include mix.touch-target;
+}
+
+.flex-center {
+  @include mix.flex-center;
+}
+
+.flex-between {
+  @include mix.flex-between;
+}
+
+.truncate {
+  @include mix.truncate;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-slate-900 { color: vars.$color-slate-900; }
+.text-slate-700 { color: vars.$color-slate-700; }
+.text-slate-500 { color: vars.$color-slate-500; }
+.text-primary { color: vars.$color-primary-500; }
+.text-danger { color: vars.$color-danger; }
+.text-success { color: vars.$color-success; }

@@ -1,0 +1,36 @@
+@use '../../../../styles/abstracts/variables' as vars;
+
+.skeleton {
+  display: block;
+  background-color: vars.$color-slate-200;
+  background-image: linear-gradient(
+    90deg,
+    vars.$color-slate-200 0%,
+    vars.$color-slate-100 50%,
+    vars.$color-slate-200 100%
+  );
+  background-size: 200% 100%;
+  animation: pulse-shimmer 1.5s ease-in-out infinite;
+
+  &.skeleton-text {
+    border-radius: vars.$radius-sm;
+    margin-bottom: 0.5rem;
+  }
+
+  &.skeleton-rect {
+    border-radius: vars.$radius-md;
+  }
+
+  &.skeleton-circle {
+    border-radius: vars.$radius-full;
+  }
+}
+
+@keyframes pulse-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

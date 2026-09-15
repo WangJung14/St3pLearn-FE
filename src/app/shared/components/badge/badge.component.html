@@ -1,0 +1,23 @@
+<span
+  class="badge"
+  [class.badge-primary]="variant() === 'primary'"
+  [class.badge-secondary]="variant() === 'secondary'"
+  [class.badge-success]="variant() === 'success'"
+  [class.badge-warning]="variant() === 'warning'"
+  [class.badge-danger]="variant() === 'danger'"
+  [class.badge-info]="variant() === 'info'"
+  [class.badge-cefr]="variant() === 'cefr' || cefrLevel()"
+  [class.cefr-a1]="cefrLevel() === 'A1'"
+  [class.cefr-a2]="cefrLevel() === 'A2'"
+  [class.cefr-b1]="cefrLevel() === 'B1'"
+  [class.cefr-b2]="cefrLevel() === 'B2'"
+  [class.cefr-c1]="cefrLevel() === 'C1'"
+  [class.cefr-c2]="cefrLevel() === 'C2'"
+  [class.badge-sm]="size() === 'sm'"
+  [class.badge-md]="size() === 'md'"
+>
+  <ng-content></ng-content>
+  @if (cefrLevel()) {
+    {{ cefrLevel() }}
+  }
+</span>

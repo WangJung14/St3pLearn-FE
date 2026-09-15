@@ -1,0 +1,58 @@
+<div class="course-card" role="button" tabindex="0" (click)="onCardClick()" (keyup.enter)="onCardClick()">
+  <div class="thumbnail-wrapper">
+    <img
+      [src]="thumbnail() || 'assets/images/course-placeholder.jpg'"
+      [alt]="title()"
+      class="thumbnail-image"
+      loading="lazy"
+    />
+    <div class="badge-overlay">
+      <app-badge variant="cefr" [cefrLevel]="cefrLevel()"></app-badge>
+    </div>
+    <button
+      type="button"
+      class="wishlist-btn"
+      [class.is-wishlisted]="isWishlisted()"
+      [attr.aria-label]="isWishlisted() ? 'Remove from wishlist' : 'Add to wishlist'"
+      (click)="onWishlistClick($event)"
+    >
+      <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="card-body">
+    @if (category()) {
+      <span class="category-chip">{{ category() }}</span>
+    }
+
+    <h3 class="course-title">{{ title() }}</h3>
+
+    @if (instructorName()) {
+      <p class="instructor-name">
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        {{ instructorName() }}
+      </p>
+    }
+
+    <div class="meta-row">
+      <div class="rating-box">
+        <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span class="rating-value">{{ rating() | number:'1.1-1' }}</span>
+        @if (studentCount() > 0) {
+          <span class="student-count">({{ studentCount() | number }})</span>
+        }
+      </div>
+    </div>
+
+    <div class="price-row">
+      <div class="price-container">
+        <span class="current-price">{{ price() === 0 ? 'Free' : (price() | currency:'USD':'symbol':'1.0-0') }}</span>
+        @if (originalPrice() > price()) {
+          <span class="original-price">{{ originalPrice() | currency:'USD':'symbol':'1.0-0' }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+@use '../../../../styles/abstracts/variables' as vars;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: vars.$font-family-heading;
+  font-weight: vars.$font-weight-semibold;
+  border-radius: vars.$radius-full;
+  white-space: nowrap;
+
+  &.badge-sm {
+    padding: 0.125rem 0.5rem;
+    font-size: vars.$font-size-xs;
+  }
+
+  &.badge-md {
+    padding: 0.25rem 0.75rem;
+    font-size: vars.$font-size-sm;
+  }
+
+  // Variants
+  &.badge-primary {
+    background-color: vars.$color-primary-100;
+    color: vars.$color-primary-700;
+  }
+
+  &.badge-secondary {
+    background-color: vars.$color-slate-100;
+    color: vars.$color-slate-700;
+  }
+
+  &.badge-success {
+    background-color: vars.$color-success-bg;
+    color: vars.$color-success-text;
+  }
+
+  &.badge-warning {
+    background-color: vars.$color-warning-bg;
+    color: vars.$color-warning-text;
+  }
+
+  &.badge-danger {
+    background-color: vars.$color-danger-bg;
+    color: vars.$color-danger-text;
+  }
+
+  &.badge-info {
+    background-color: vars.$color-info-bg;
+    color: vars.$color-info-text;
+  }
+
+  // CEFR Levels
+  &.cefr-a1 { background-color: #dbeafe; color: #1e40af; }
+  &.cefr-a2 { background-color: #bfdbfe; color: #1d4ed8; }
+  &.cefr-b1 { background-color: #93c5fd; color: #1e3a8a; }
+  &.cefr-b2 { background-color: vars.$color-primary-500; color: #ffffff; }
+  &.cefr-c1 { background-color: vars.$color-primary-700; color: #ffffff; }
+  &.cefr-c2 { background-color: #1e1b4b; color: #ffffff; }
+}

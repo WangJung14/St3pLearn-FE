@@ -5,7 +5,27 @@ body {
   font-family: vars.$font-family-base;
   font-size: vars.$font-size-base;
   line-height: vars.$line-height-base;
-  color: vars.$color-text;
-  background-color: vars.$color-bg;
+  color: vars.$color-slate-900;
+  background-color: vars.$color-slate-50;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: vars.$font-family-heading;
+  font-weight: vars.$font-weight-bold;
+  line-height: vars.$line-height-tight;
+  color: vars.$color-slate-900;
+}
+
+h1 { font-size: vars.$font-size-4xl; }
+h2 { font-size: vars.$font-size-3xl; }
+h3 { font-size: vars.$font-size-2xl; }
+h4 { font-size: vars.$font-size-xl; }
+h5 { font-size: vars.$font-size-lg; }
+h6 { font-size: vars.$font-size-base; }
+
+p {
+  color: vars.$color-slate-700;
+  line-height: vars.$line-height-relaxed;
 }

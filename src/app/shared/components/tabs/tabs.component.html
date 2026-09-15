@@ -1,0 +1,33 @@
+<div
+  class="tabs-container"
+  [class.tabs-line]="variant() === 'line'"
+  [class.tabs-pills]="variant() === 'pills'"
+>
+  <div class="tabs-header" role="tablist" aria-label="Tabs navigation">
+    @for (tab of tabs(); track tab.id; let i = $index) {
+      <button
+        type="button"
+        role="tab"
+        class="tab-btn"
+        [class.is-active]="activeId() === tab.id"
+        [class.is-disabled]="tab.disabled"
+        [attr.aria-selected]="activeId() === tab.id"
+        [attr.aria-controls]="'tabpanel-' + tab.id"
+        [attr.id]="'tab-' + tab.id"
+        [tabindex]="activeId() === tab.id ? 0 : -1"
+        [disabled]="tab.disabled"
+        (click)="selectTab(tab)"
+        (keydown)="onKeydown($event, i)"
+      >
+        <span class="tab-label">{{ tab.label }}</span>
+        @if (tab.badge !== undefined && tab.badge !== null) {
+          <span class="tab-badge">{{ tab.badge }}</span>
+        }
+      </button>
+    }
+  </div>
+
+  <div class="tabs-content">
+    <ng-content></ng-content>
+  </div>
+</div>
