@@ -1,0 +1,137 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins' as mix;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$spacing-sm;
+  position: relative;
+  font-family: vars.$font-family-base;
+  font-weight: vars.$font-weight-medium;
+  border-radius: vars.$radius-md;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  min-height: vars.$touch-target-min; // WCAG Minimum Touch Target 44px
+  min-width: vars.$touch-target-min;
+
+  @include mix.focus-visible-outline;
+
+  &:disabled,
+  &.is-loading {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Sizes
+  &.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: vars.$font-size-sm;
+    min-height: 36px;
+  }
+
+  &.btn-md {
+    padding: 0.5rem 1.25rem;
+    font-size: vars.$font-size-base;
+    min-height: vars.$touch-target-min;
+  }
+
+  &.btn-lg {
+    padding: 0.75rem 1.75rem;
+    font-size: vars.$font-size-lg;
+    min-height: 52px;
+  }
+
+  &.btn-full {
+    width: 100%;
+  }
+
+  // Variants
+  &.btn-primary {
+    background-color: vars.$color-primary-500;
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$color-primary-600;
+    }
+
+    &:active:not(:disabled) {
+      background-color: vars.$color-primary-700;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: vars.$color-slate-100;
+    color: vars.$color-slate-900;
+    border-color: vars.$color-slate-200;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$color-slate-200;
+    }
+
+    &:active:not(:disabled) {
+      background-color: vars.$color-slate-300;
+    }
+  }
+
+  &.btn-ghost {
+    background-color: transparent;
+    color: vars.$color-slate-700;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$color-slate-100;
+      color: vars.$color-slate-900;
+    }
+  }
+
+  &.btn-danger {
+    background-color: vars.$color-danger;
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background-color: #b91c1c;
+    }
+  }
+
+  &.btn-outline {
+    background-color: transparent;
+    color: vars.$color-primary-500;
+    border-color: vars.$color-primary-500;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$color-primary-50;
+    }
+  }
+
+  // Spinner
+  .btn-spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .spinner-track {
+    opacity: 0.25;
+  }
+
+  .spinner-head {
+    opacity: 0.9;
+  }
+
+  .btn-content-hidden {
+    visibility: hidden;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
