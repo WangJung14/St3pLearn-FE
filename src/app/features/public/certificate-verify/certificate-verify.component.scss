@@ -1,0 +1,120 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins' as mix;
+
+.verify-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: vars.$spacing-xl vars.$spacing-md;
+}
+
+.verify-header {
+  text-align: center;
+  margin-bottom: vars.$spacing-xl;
+
+  .verify-title {
+    font-family: vars.$font-family-heading;
+    font-size: vars.$font-size-2xl;
+    font-weight: 800;
+    color: vars.$color-slate-900;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  .verify-subtitle {
+    font-size: vars.$font-size-base;
+    color: vars.$color-slate-600;
+  }
+}
+
+.verify-form {
+  display: flex;
+  gap: vars.$spacing-md;
+  margin-bottom: vars.$spacing-2xl;
+
+  &__input {
+    flex: 1;
+  }
+}
+
+.cert-card {
+  background-color: #ffffff;
+  border-radius: vars.$radius-xl;
+  border: 2px solid vars.$color-slate-200;
+  padding: vars.$spacing-2xl;
+  @include mix.elevation('md');
+
+  &--valid {
+    border-color: #22c55e;
+  }
+
+  &--invalid {
+    border-color: #ef4444;
+  }
+
+  &__status {
+    display: flex;
+    justify-content: center;
+    margin-bottom: vars.$spacing-lg;
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: vars.$spacing-xs;
+      padding: vars.$spacing-xs vars.$spacing-lg;
+      border-radius: vars.$radius-full;
+      font-weight: vars.$font-weight-bold;
+      font-size: vars.$font-size-sm;
+
+      &--valid {
+        background-color: #dcfce7;
+        color: #15803d;
+      }
+
+      &--invalid {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+    }
+  }
+
+  .cert-message {
+    text-align: center;
+    font-size: vars.$font-size-base;
+    color: vars.$color-slate-600;
+    margin-bottom: vars.$spacing-xl;
+  }
+
+  .cert-details {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-md;
+    background-color: vars.$color-slate-50;
+    padding: vars.$spacing-lg;
+    border-radius: vars.$radius-lg;
+
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: vars.$spacing-xs;
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .detail-label {
+        font-size: vars.$font-size-sm;
+        color: vars.$color-slate-500;
+      }
+
+      .detail-value {
+        font-size: vars.$font-size-base;
+        font-weight: vars.$font-weight-semibold;
+        color: vars.$color-slate-900;
+
+        &--highlight {
+          color: vars.$color-primary-600;
+        }
+      }
+    }
+  }
+}

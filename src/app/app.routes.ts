@@ -24,6 +24,14 @@ export const routes: Routes = [
         loadComponent: () => import('./features/public/teacher-profile/teacher-profile.component').then((m) => m.TeacherProfileComponent),
       },
       {
+        path: 'certificates/verify',
+        loadComponent: () => import('./features/public/certificate-verify/certificate-verify.component').then((m) => m.CertificateVerifyComponent),
+      },
+      {
+        path: 'certificates/verify/:code',
+        loadComponent: () => import('./features/public/certificate-verify/certificate-verify.component').then((m) => m.CertificateVerifyComponent),
+      },
+      {
         path: '403',
         loadComponent: () => import('./features/error-page/error-page.component').then((m) => m.ErrorPageComponent),
         data: { errorCode: '403' },
