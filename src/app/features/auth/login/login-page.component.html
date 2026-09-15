@@ -1,0 +1,54 @@
+<div class="auth-card">
+  <div class="auth-card__header">
+    <h1 class="auth-card__title">Đăng nhập tài khoản</h1>
+    <p class="auth-card__subtitle">Chào mừng bạn quay trở lại với St3p-Learn</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-card__form" novalidate>
+    <app-form-field label="Email" [required]="true">
+      <app-input
+        type="email"
+        placeholder="nhan@example.com"
+        formControlName="email"
+        id="login-email"
+      ></app-input>
+      @if (loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']) {
+        <span class="error-msg">Vui lòng nhập email</span>
+      } @else if (loginForm.controls.email.touched && loginForm.controls.email.errors?.['email']) {
+        <span class="error-msg">Email không hợp lệ</span>
+      }
+    </app-form-field>
+
+    <app-form-field label="Mật khẩu" [required]="true">
+      <app-input
+        type="password"
+        placeholder="••••••••"
+        formControlName="password"
+        id="login-password"
+      ></app-input>
+      @if (loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']) {
+        <span class="error-msg">Vui lòng nhập mật khẩu</span>
+      } @else if (loginForm.controls.password.touched && loginForm.controls.password.errors?.['minlength']) {
+        <span class="error-msg">Mật khẩu phải từ 6 ký tự</span>
+      }
+    </app-form-field>
+
+    <div class="auth-card__options">
+      <a routerLink="/forgot-password" class="auth-card__link">Quên mật khẩu?</a>
+    </div>
+
+    <app-button
+      type="submit"
+      variant="primary"
+      [fullWidth]="true"
+      [loading]="isLoading()"
+    >
+      Đăng nhập
+    </app-button>
+  </form>
+
+  <div class="auth-card__footer">
+    <span>Chưa có tài khoản?</span>
+    <a routerLink="/register" class="auth-card__link auth-card__link--bold">Đăng ký ngay</a>
+  </div>
+</div>

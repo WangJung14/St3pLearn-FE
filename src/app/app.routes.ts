@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,18 @@ export const routes: Routes = [
     ],
   },
   {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        loadComponent: () => import('./features/auth/login/login-page.component').then((m) => m.LoginPageComponent),
+      },
+    ],
+  },
+  {
     path: '**',
     redirectTo: '404',
   },
 ];
+
