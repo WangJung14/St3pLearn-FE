@@ -1,0 +1,48 @@
+@use '../../../../styles/abstracts/variables' as vars;
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-xs;
+  width: 100%;
+
+  .form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: vars.$font-family-base;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$color-slate-800;
+
+    .required-asterisk {
+      color: vars.$color-danger;
+      font-weight: vars.$font-weight-bold;
+    }
+  }
+
+  .field-control-container {
+    width: 100%;
+  }
+
+  .error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: vars.$font-size-xs;
+    color: vars.$color-danger;
+    margin-top: 0.125rem;
+
+    .error-icon {
+      width: 0.875rem;
+      height: 0.875rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .helper-text {
+    font-size: vars.$font-size-xs;
+    color: vars.$color-slate-500;
+    margin-top: 0.125rem;
+  }
+}
