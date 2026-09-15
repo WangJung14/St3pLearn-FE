@@ -1,0 +1,89 @@
+<div class="catalog-page">
+  <div class="catalog-header">
+    <h1 class="catalog-title">Thư viện Khóa học</h1>
+    <p class="catalog-subtitle">Tìm kiếm khóa học phù hợp với định hướng sự nghiệp của bạn</p>
+  </div>
+
+  <!-- Search & Filter Controls -->
+  <form [formGroup]="filterForm" (ngSubmit)="onSearch()" class="filter-bar">
+    <div class="filter-bar__input">
+      <app-input
+        type="search"
+        placeholder="Tìm tên khóa học, từ khóa..."
+        formControlName="keyword"
+        id="catalog-search"
+      ></app-input>
+    </div>
+
+    <div class="filter-bar__select">
+      <select formControlName="level" class="custom-select" id="catalog-level">
+        @for (lvl of levels; track lvl.value) {
+          <option [value]="lvl.value">{{ lvl.label }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="filter-bar__actions">
+      <app-button type="submit" variant="primary">Tìm kiếm</app-button>
+      <app-button type="button" variant="ghost" (btnClick)="onReset()">Đặt lại</app-button>
+    </div>
+  </form>
+
+  <!-- Content Section -->
+  <div class="catalog-content">
+    @if (isLoading()) {
+      <div class="catalog-grid">
+        @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+          <div class="skeleton-card">
+            <app-skeleton width="100%" height="160px" borderRadius="12px"></app-skeleton>
+            <app-skeleton width="80%" height="20px"></app-skeleton>
+            <app-skeleton width="40%" height="16px"></app-skeleton>
+          </div>
+        }
+      </div>
+    } @else if (courses().length === 0) {
+      <div class="empty-state">
+        <div class="empty-state__icon">🔍</div>
+        <h3 class="empty-state__title">Không tìm thấy khóa học nào</h3>
+        <p class="empty-state__text">Vui lòng thử thay đổi từ khóa hoặc bộ lọc tìm kiếm.</p>
+      </div>
+    } @else {
+      <div class="catalog-grid">
+        @for (course of courses(); track course.id) {
+          <app-course-card
+            [title]="course.title"
+            [thumbnail]="course.thumbnailUrl"
+            category="Web Dev"
+            [cefrLevel]="course.level"
+            instructorName="Giảng viên St3p-Learn"
+            [rating]="course.avgRating"
+            [studentCount]="course.totalReviews"
+            [price]="course.price"
+            (cardClick)="onCourseClick(course.slug)"
+          ></app-course-card>
+        }
+      </div>
+
+      <!-- Pagination -->
+      @if (totalPages() > 1) {
+        <div class="pagination">
+          <app-button
+            variant="secondary"
+            [disabled]="currentPage() === 0"
+            (btnClick)="fetchCourses(currentPage() - 1)"
+          >
+            Trang trước
+          </app-button>
+          <span class="pagination__info">Trang {{ currentPage() + 1 }} / {{ totalPages() }}</span>
+          <app-button
+            variant="secondary"
+            [disabled]="currentPage() >= totalPages() - 1"
+            (btnClick)="fetchCourses(currentPage() + 1)"
+          >
+            Trang sau
+          </app-button>
+        </div>
+      }
+    }
+  </div>
+</div>

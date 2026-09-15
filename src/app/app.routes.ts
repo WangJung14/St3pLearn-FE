@@ -12,6 +12,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/public/landing/landing-page.component').then((m) => m.LandingPageComponent),
       },
       {
+        path: 'courses',
+        loadComponent: () => import('./features/public/catalog/catalog-page.component').then((m) => m.CatalogPageComponent),
+      },
+      {
         path: '403',
         loadComponent: () => import('./features/error-page/error-page.component').then((m) => m.ErrorPageComponent),
         data: { errorCode: '403' },
