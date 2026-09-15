@@ -30,8 +30,12 @@ export class InputComponent implements ControlValueAccessor {
   showPassword = signal<boolean>(false);
   isFocused = signal<boolean>(false);
 
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: string) => void = () => {
+    // Default no-op
+  };
+  private onTouched: () => void = () => {
+    // Default no-op
+  };
 
   writeValue(value: string | null): void {
     this.value.set(value ?? '');
@@ -45,7 +49,7 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState?(): void {
     // Handled via input signal / template property binding
   }
 

@@ -33,7 +33,7 @@ describe('ToastComponent', () => {
   });
 
   it('should call dismiss on toast close button click', () => {
-    const id = toastService.error('Connection failed');
+    toastService.error('Connection failed');
     fixture.detectChanges();
 
     const closeBtn = fixture.nativeElement.querySelector('.toast-close-btn');

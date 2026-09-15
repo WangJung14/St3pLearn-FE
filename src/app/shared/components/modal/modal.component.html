@@ -1,7 +1,9 @@
 @if (isOpen()) {
   <div
     class="modal-backdrop"
+    tabindex="-1"
     (click)="onBackdropClick($event)"
+    (keyup.escape)="onCloseButtonClick()"
     role="dialog"
     aria-modal="true"
     [attr.aria-label]="title() || 'Dialog'"

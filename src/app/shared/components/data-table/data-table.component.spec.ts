@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataTableComponent, TableColumn } from './data-table.component';
+import { DataTableComponent, SortEvent, TableColumn } from './data-table.component';
 
 describe('DataTableComponent', () => {
-  let component: DataTableComponent;
-  let fixture: ComponentFixture<DataTableComponent>;
+  let component: DataTableComponent<any>;
+  let fixture: ComponentFixture<DataTableComponent<any>>;
 
-  const columns: TableColumn[] = [
+  const columns: TableColumn<any>[] = [
     { key: 'id', label: 'ID', sortable: true },
     { key: 'name', label: 'Name', sortable: true },
     { key: 'role', label: 'Role' },
@@ -55,7 +55,7 @@ describe('DataTableComponent', () => {
     fixture.componentRef.setInput('columns', columns);
     fixture.detectChanges();
 
-    let sortEvent: any = null;
+    let sortEvent: SortEvent | null = null;
     component.sortChange.subscribe((event) => {
       sortEvent = event;
     });

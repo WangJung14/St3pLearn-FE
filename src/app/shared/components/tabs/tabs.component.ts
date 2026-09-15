@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 export interface TabItem {
   id: string;
@@ -34,7 +34,7 @@ export class TabsComponent {
     const tabsList = this.tabs();
     if (tabsList.length === 0) return;
 
-    let targetIndex = currentIndex;
+    let targetIndex: number;
 
     switch (event.key) {
       case 'ArrowRight':

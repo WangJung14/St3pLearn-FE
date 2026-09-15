@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, TemplateRef, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, input, output } from '@angular/core';
 
 export type SortDirection = 'asc' | 'desc' | null;
 
@@ -8,7 +8,7 @@ export interface TableColumn<T = any> {
   label: string;
   sortable?: boolean;
   width?: string;
-  cellTemplate?: TemplateRef<{ $implicit: T; row: T; index: number }>;
+  cellTemplate?: TemplateRef<{ $implicit: unknown; row: T; index: number }>;
 }
 
 export interface SortEvent {
@@ -54,8 +54,8 @@ export class DataTableComponent<T = any> {
     });
   }
 
-  getCellValue(row: any, key: string): any {
-    if (!row || !key) return '';
-    return key.split('.').reduce((acc, part) => acc && acc[part], row) ?? '';
+  getCellValue(row: unknown, key: string): unknown {
+    if (!row || !key || typeof row !== 'object') return '';
+    return key.split('.').reduce<unknown>((acc, part) => (acc && typeof acc === 'object' ? (acc as Record<string, unknown>)[part] : undefined), row) ?? '';
   }
 }

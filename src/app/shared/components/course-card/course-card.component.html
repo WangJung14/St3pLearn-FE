@@ -1,4 +1,4 @@
-<div class="course-card" (click)="onCardClick()">
+<div class="course-card" role="button" tabindex="0" (click)="onCardClick()" (keyup.enter)="onCardClick()">
   <div class="thumbnail-wrapper">
     <img
       [src]="thumbnail() || 'assets/images/course-placeholder.jpg'"
