@@ -1,0 +1,48 @@
+<div class="auth-card">
+  <div class="auth-card__header">
+    <h1 class="auth-card__title">Xác thực Email</h1>
+    <p class="auth-card__subtitle">Vui lòng nhập mã OTP đã được gửi đến email của bạn</p>
+  </div>
+
+  <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()" class="auth-card__form" novalidate>
+    <app-form-field label="Email" [required]="true">
+      <app-input
+        type="email"
+        placeholder="nhan@example.com"
+        formControlName="email"
+        id="verify-email-input"
+      ></app-input>
+      @if (verifyForm.controls.email.touched && verifyForm.controls.email.errors?.['required']) {
+        <span class="error-msg">Vui lòng nhập email</span>
+      } @else if (verifyForm.controls.email.touched && verifyForm.controls.email.errors?.['email']) {
+        <span class="error-msg">Email không hợp lệ</span>
+      }
+    </app-form-field>
+
+    <app-form-field label="Mã xác thực OTP" [required]="true">
+      <app-input
+        type="text"
+        placeholder="Nhập mã OTP"
+        formControlName="otp"
+        id="verify-otp"
+      ></app-input>
+      @if (verifyForm.controls.otp.touched && verifyForm.controls.otp.errors?.['required']) {
+        <span class="error-msg">Vui lòng nhập mã OTP</span>
+      }
+    </app-form-field>
+
+    <app-button
+      type="submit"
+      variant="primary"
+      [fullWidth]="true"
+      [loading]="isLoading()"
+    >
+      Xác thực tài khoản
+    </app-button>
+  </form>
+
+  <div class="auth-card__footer">
+    <span>Quay lại</span>
+    <a routerLink="/login" class="auth-card__link auth-card__link--bold">Đăng nhập</a>
+  </div>
+</div>
