@@ -1,0 +1,66 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mix;
+
+.error-page-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$spacing-xl vars.$spacing-md;
+
+  .error-card {
+    background-color: #ffffff;
+    border-radius: vars.$radius-xl;
+    padding: vars.$spacing-2xl vars.$spacing-xl;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid vars.$color-slate-200;
+    @include mix.elevation('lg');
+
+    .error-illustration {
+      position: relative;
+      margin: 0 auto vars.$spacing-lg;
+      width: 120px;
+      height: 120px;
+      @include mix.flex-center;
+
+      .code-badge {
+        font-family: vars.$font-family-heading;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: vars.$color-primary-100;
+        position: absolute;
+        user-select: none;
+      }
+
+      .illustration-icon {
+        width: 4rem;
+        height: 4rem;
+        color: vars.$color-primary-500;
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+    .error-title {
+      font-family: vars.$font-family-heading;
+      font-size: vars.$font-size-2xl;
+      font-weight: vars.$font-weight-bold;
+      color: vars.$color-slate-900;
+      margin-bottom: vars.$spacing-sm;
+    }
+
+    .error-message {
+      font-size: vars.$font-size-base;
+      color: vars.$color-slate-600;
+      line-height: vars.$line-height-relaxed;
+      margin-bottom: vars.$spacing-xl;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

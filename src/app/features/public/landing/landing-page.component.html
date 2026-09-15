@@ -1,0 +1,136 @@
+<div class="landing-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <svg class="hero-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          Nền tảng Học trực tuyến Thế hệ mới
+        </span>
+        <h1 class="hero-title">
+          Nâng Tầm Kỹ Năng Với <span class="highlight">St3p-Learn</span>
+        </h1>
+        <p class="hero-subtitle">
+          Khám phá hàng trăm khóa học lập trình, AI và công nghệ hàng đầu với thuật toán Spaced Repetition SM-2 thông minh và AI Document Vault hỗ trợ vượt trội.
+        </p>
+        <div class="hero-actions">
+          <a routerLink="/courses">
+            <app-button variant="primary" size="lg">Khám phá khóa học</app-button>
+          </a>
+          <a routerLink="/register">
+            <app-button variant="secondary" size="lg">Đăng ký ngay</app-button>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-preview">
+          <div class="hero-card-preview__badge">AI Powered</div>
+          <div class="hero-card-preview__icon">🚀</div>
+          <h3 class="hero-card-preview__title">Spaced Repetition SM-2</h3>
+          <p class="hero-card-preview__text">Ghi nhớ kiến thức bền vững gấp 3 lần với thuật toán lặp lại ngắt quãng khoa học.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats-section">
+    <div class="stats-container">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-item">
+          <div class="stat-item__value">{{ stat.value }}</div>
+          <div class="stat-item__label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Danh mục nổi bật</h2>
+        <p class="section-subtitle">Lựa chọn lĩnh vực công nghệ bạn mong muốn chinh phục</p>
+      </div>
+
+      <div class="categories-grid">
+        @for (cat of categories; track cat.name) {
+          <a routerLink="/courses" class="category-card">
+            <div class="category-card__icon-wrap">
+              <svg class="category-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="category-card__info">
+              <h3 class="category-card__name">{{ cat.name }}</h3>
+              <span class="category-card__count">{{ cat.count }}</span>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Courses Section -->
+  <section class="featured-courses-section">
+    <div class="section-container">
+      <div class="section-header section-header--between">
+        <div>
+          <h2 class="section-title">Khóa học nổi bật</h2>
+          <p class="section-subtitle">Được đăng ký nhiều nhất bởi các học viên tuần qua</p>
+        </div>
+        <a routerLink="/courses">
+          <app-button variant="ghost">Xem tất cả khóa học &rarr;</app-button>
+        </a>
+      </div>
+
+      <div class="courses-grid">
+        @for (course of featuredCourses; track course.id) {
+          <app-course-card
+            [title]="course.title"
+            [thumbnail]="course.thumbnailUrl"
+            category="Web Dev"
+            [cefrLevel]="course.level"
+            instructorName="St3p-Learn Master"
+            [rating]="course.avgRating"
+            [studentCount]="course.totalReviews"
+            [price]="course.price"
+          ></app-course-card>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Section -->
+  <section class="value-prop-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Tại sao chọn St3p-Learn?</h2>
+        <p class="section-subtitle">Trải nghiệm học tập hiện đại, trực quan và đạt hiệu quả tối đa</p>
+      </div>
+
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-card__icon">🧠</div>
+          <h3 class="value-card__title">SM-2 Spaced Repetition</h3>
+          <p class="value-card__text">Ôn tập Flashcards tự động dựa trên thuật toán SM-2 giúp học viên nhớ lâu gấp 3 lần.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">⚡</div>
+          <h3 class="value-card__title">AI Knowledge Vault</h3>
+          <p class="value-card__text">Tự động tạo câu hỏi trắc nghiệm & flashcards từ tài liệu PDF/Markdown của giảng viên.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card__icon">📜</div>
+          <h3 class="value-card__title">Chứng chỉ uy tín</h3>
+          <p class="value-card__text">Cấp chứng nhận có mã định danh xác thực công khai ngay sau khi hoàn thành khóa học.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

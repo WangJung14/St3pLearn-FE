@@ -1,0 +1,42 @@
+<div class="teacher-profile-page">
+  @if (isLoading()) {
+    <div class="skeleton-container">
+      <app-skeleton width="120px" height="120px" borderRadius="50%"></app-skeleton>
+      <app-skeleton width="40%" height="32px"></app-skeleton>
+      <app-skeleton width="80%" height="60px"></app-skeleton>
+    </div>
+  } @else if (teacher()) {
+    <div class="teacher-card">
+      <div class="teacher-card__header">
+        <div class="avatar-wrap">
+          <img [src]="teacher()?.avatarUrl" [alt]="teacher()?.fullName" class="avatar-img" />
+        </div>
+        <div class="info-wrap">
+          <h1 class="teacher-name">{{ teacher()?.fullName }}</h1>
+          <span class="teacher-username">&#64;{{ teacher()?.username }}</span>
+          <span class="teacher-location">📍 {{ teacher()?.country }}</span>
+        </div>
+      </div>
+
+      <div class="teacher-card__bio">
+        <h3 class="bio-title">Giới thiệu giảng viên</h3>
+        <p class="bio-text">{{ teacher()?.bio }}</p>
+      </div>
+
+      <div class="teacher-stats">
+        <div class="stat-box">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Khóa học đã xuất bản</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">8,500+</span>
+          <span class="stat-label">Học viên toàn cầu</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">4.9 ⭐</span>
+          <span class="stat-label">Đánh giá trung bình</span>
+        </div>
+      </div>
+    </div>
+  }
+</div>

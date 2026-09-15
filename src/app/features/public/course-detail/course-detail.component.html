@@ -1,0 +1,74 @@
+<div class="course-detail-page">
+  @if (isLoading()) {
+    <div class="skeleton-container">
+      <app-skeleton width="100%" height="240px" borderRadius="16px"></app-skeleton>
+      <app-skeleton width="60%" height="32px"></app-skeleton>
+      <app-skeleton width="100%" height="100px"></app-skeleton>
+    </div>
+  } @else if (course()) {
+    <div class="course-hero">
+      <div class="course-hero__content">
+        <div class="course-hero__meta">
+          <app-badge variant="primary">{{ course()?.level }}</app-badge>
+        </div>
+        <h1 class="course-hero__title">{{ course()?.title }}</h1>
+        <p class="course-hero__description">{{ course()?.description }}</p>
+
+        <div class="course-hero__instructor">
+          <a [routerLink]="['/teachers', course()?.instructorId]" class="instructor-link">
+            Xem hồ sơ Giảng viên &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="course-hero__card">
+        <div class="thumbnail-wrap">
+          <img [src]="course()?.thumbnailUrl" [alt]="course()?.title" class="thumbnail-img" />
+        </div>
+        <div class="card-body">
+          <div class="price-tag">
+            <span class="price-value">{{ course()?.price | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          <app-button variant="primary" [fullWidth]="true" size="lg" (btnClick)="onEnroll()">
+            Đăng ký học ngay
+          </app-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Syllabus & Curriculum Accordion -->
+    <div class="curriculum-section">
+      <h2 class="section-title">Nội dung khóa học (Syllabus)</h2>
+
+      <div class="accordion">
+        @for (section of course()?.curriculum; track section.id) {
+          <div class="accordion-item" [class.accordion-item--open]="isSectionExpanded(section.id)">
+            <button class="accordion-header" (click)="toggleSection(section.id)">
+              <span class="accordion-title">{{ section.title }}</span>
+              <span class="accordion-counter">{{ section.lessons.length || 0 }} bài học</span>
+            </button>
+
+            @if (isSectionExpanded(section.id)) {
+              <div class="accordion-body">
+                @for (lesson of section.lessons; track lesson.id) {
+                  <div class="lesson-item">
+                    <div class="lesson-item__info">
+                      <span class="lesson-item__icon">🎥</span>
+                      <span class="lesson-item__title">{{ lesson.title }}</span>
+                    </div>
+                    <div class="lesson-item__meta">
+                      @if (lesson.preview) {
+                        <app-badge variant="success">Học thử miễn phí</app-badge>
+                      }
+                      <span class="lesson-duration">{{ lesson.duration }} phút</span>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

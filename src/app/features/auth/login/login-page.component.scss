@@ -1,0 +1,105 @@
+@use '../../../../styles/abstracts/variables' as vars;
+@use '../../../../styles/abstracts/mixins' as mix;
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: vars.$spacing-xl;
+  background-color: #ffffff;
+  border-radius: vars.$radius-xl;
+  border: 1px solid vars.$color-slate-200;
+  @include mix.elevation('md');
+
+  &__header {
+    text-align: center;
+    margin-bottom: vars.$spacing-lg;
+  }
+
+  &__title {
+    font-family: vars.$font-family-heading;
+    font-size: vars.$font-size-2xl;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-slate-900;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__subtitle {
+    font-size: vars.$font-size-sm;
+    color: vars.$color-slate-600;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-md;
+  }
+
+  &__options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: vars.$font-size-sm;
+    margin-top: calc(-1 * vars.$spacing-xs);
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__link {
+    color: vars.$color-primary-600;
+    text-decoration: none;
+    font-weight: vars.$font-weight-medium;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: vars.$color-primary-700;
+      text-decoration: underline;
+    }
+
+    &--bold {
+      font-weight: vars.$font-weight-semibold;
+      margin-left: vars.$spacing-xs;
+    }
+  }
+
+  &__footer {
+    margin-top: vars.$spacing-xl;
+    padding-top: vars.$spacing-md;
+    border-top: 1px solid vars.$color-slate-200;
+    text-align: center;
+    font-size: vars.$font-size-sm;
+    color: vars.$color-slate-600;
+  }
+}
+
+.auth-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: vars.$spacing-xs;
+  padding: vars.$spacing-md;
+  border-radius: vars.$radius-md;
+  font-size: vars.$font-size-xs;
+  margin-bottom: vars.$spacing-md;
+  line-height: vars.$line-height-relaxed;
+
+  &--error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+  }
+
+  &__icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+  }
+}
+
+.error-msg {
+  display: block;
+  font-size: vars.$font-size-xs;
+  color: #ef4444;
+  margin-top: vars.$spacing-xs;
+}
