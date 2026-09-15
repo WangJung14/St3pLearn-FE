@@ -1,0 +1,19 @@
+@use '../../../styles/abstracts/variables' as vars;
+
+.player-layout {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$color-slate-900;
+  color: #ffffff;
+  overflow: hidden;
+
+  .player-main-content {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,128 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mix;
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: vars.$color-slate-100;
+
+  .sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid vars.$color-slate-200;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.25s ease;
+
+    .sidebar-header {
+      padding: vars.$spacing-md;
+      @include mix.flex-between;
+      border-bottom: 1px solid vars.$color-slate-100;
+
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+
+        .logo-icon {
+          width: 1.75rem;
+          height: 1.75rem;
+          color: vars.$color-primary-500;
+        }
+
+        .brand-name {
+          font-family: vars.$font-family-heading;
+          font-weight: vars.$font-weight-bold;
+          color: vars.$color-slate-900;
+        }
+      }
+
+      .collapse-toggle {
+        color: vars.$color-slate-400;
+
+        svg {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+    }
+
+    .sidebar-nav {
+      padding: vars.$spacing-md vars.$spacing-sm;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 0.75rem;
+        border-radius: vars.$radius-md;
+        font-size: vars.$font-size-sm;
+        font-weight: vars.$font-weight-medium;
+        color: vars.$color-slate-600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: vars.$color-slate-100;
+          color: vars.$color-slate-900;
+        }
+
+        &.active {
+          background-color: vars.$color-primary-50;
+          color: vars.$color-primary-600;
+          font-weight: vars.$font-weight-semibold;
+        }
+
+        .nav-icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  &.is-collapsed {
+    .sidebar {
+      width: 72px;
+    }
+  }
+
+  .main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .top-bar {
+      height: 60px;
+      background-color: #ffffff;
+      border-bottom: 1px solid vars.$color-slate-200;
+      padding: 0 vars.$spacing-lg;
+      @include mix.flex-between;
+
+      .user-role-badge {
+        font-size: vars.$font-size-xs;
+        font-weight: vars.$font-weight-semibold;
+        padding: 0.25rem 0.625rem;
+        border-radius: vars.$radius-full;
+        background-color: vars.$color-primary-100;
+        color: vars.$color-primary-700;
+      }
+
+      .profile-link {
+        font-size: vars.$font-size-sm;
+        font-weight: vars.$font-weight-medium;
+        color: vars.$color-slate-800;
+      }
+    }
+
+    .content-area {
+      flex: 1;
+      padding: vars.$spacing-lg;
+    }
+  }
+}

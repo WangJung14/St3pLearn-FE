@@ -1,0 +1,41 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mix;
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: vars.$color-slate-100;
+  padding: vars.$spacing-md;
+
+  .auth-header {
+    margin-bottom: vars.$spacing-lg;
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+
+      .logo-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: vars.$color-primary-500;
+      }
+
+      .brand-name {
+        font-family: vars.$font-family-heading;
+        font-size: vars.$font-size-2xl;
+        font-weight: vars.$font-weight-bold;
+        color: vars.$color-slate-900;
+      }
+    }
+  }
+
+  .auth-content-container {
+    width: 100%;
+    max-width: 460px;
+  }
+}

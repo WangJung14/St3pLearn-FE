@@ -1,0 +1,53 @@
+<div class="dashboard-layout" [class.is-collapsed]="isSidebarCollapsed()">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/" class="brand-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        @if (!isSidebarCollapsed()) {
+          <span class="brand-name">Teacher Studio</span>
+        }
+      </a>
+      <button type="button" class="collapse-toggle" (click)="toggleSidebar()" aria-label="Toggle Sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard/teacher/courses" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Khóa Học Của Tôi</span> }
+      </a>
+      <a routerLink="/dashboard/teacher/question-banks" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Ngân Hàng Câu Hỏi</span> }
+      </a>
+      <a routerLink="/dashboard/teacher/exams" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Quản Lý Đề Thi</span> }
+      </a>
+      <a routerLink="/dashboard/teacher/reviews" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Đánh Giá Khóa Học</span> }
+      </a>
+      <a routerLink="/dashboard/teacher/coupons" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Mã Giảm Giá Coupon</span> }
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-bar">
+      <span class="user-role-badge">TEACHER</span>
+      <div class="user-profile-menu">
+        <a routerLink="/dashboard/student/profile" class="profile-link">Giáo viên</a>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

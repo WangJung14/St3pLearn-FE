@@ -1,0 +1,53 @@
+<div class="dashboard-layout" [class.is-collapsed]="isSidebarCollapsed()">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/" class="brand-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        @if (!isSidebarCollapsed()) {
+          <span class="brand-name">St3p-Learn</span>
+        }
+      </a>
+      <button type="button" class="collapse-toggle" (click)="toggleSidebar()" aria-label="Toggle Sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard/student/learning" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Góc Học Tập</span> }
+      </a>
+      <a routerLink="/dashboard/student/flashcards" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Từ Vựng Flashcards</span> }
+      </a>
+      <a routerLink="/dashboard/student/wishlist" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Khóa Học Yêu Thích</span> }
+      </a>
+      <a routerLink="/dashboard/student/orders" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Đơn Hàng & Hoàn Tiền</span> }
+      </a>
+      <a routerLink="/dashboard/student/profile" routerLinkActive="active" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        @if (!isSidebarCollapsed()) { <span>Hồ Sơ Cá Nhân</span> }
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="top-bar">
+      <span class="user-role-badge">STUDENT</span>
+      <div class="user-profile-menu">
+        <a routerLink="/dashboard/student/profile" class="profile-link">Học viên</a>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
