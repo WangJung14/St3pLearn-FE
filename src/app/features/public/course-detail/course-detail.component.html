@@ -45,7 +45,7 @@
           <div class="accordion-item" [class.accordion-item--open]="isSectionExpanded(section.id)">
             <button class="accordion-header" (click)="toggleSection(section.id)">
               <span class="accordion-title">{{ section.title }}</span>
-              <span class="accordion-counter">{{ section.lessons?.length || 0 }} bài học</span>
+              <span class="accordion-counter">{{ section.lessons.length || 0 }} bài học</span>
             </button>
 
             @if (isSectionExpanded(section.id)) {

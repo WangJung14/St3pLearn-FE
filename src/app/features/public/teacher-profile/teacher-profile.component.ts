@@ -7,7 +7,7 @@ import { SkeletonComponent } from '@shared/components/skeleton/skeleton.componen
 @Component({
   selector: 'app-teacher-profile',
   standalone: true,
-  imports: [RouterLink, SkeletonComponent],
+  imports: [SkeletonComponent],
   templateUrl: './teacher-profile.component.html',
   styleUrl: './teacher-profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

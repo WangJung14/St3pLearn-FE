@@ -14,11 +14,9 @@ import { SkeletonComponent } from '@shared/components/skeleton/skeleton.componen
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink,
     DatePipe,
     InputComponent,
     ButtonComponent,
-    BadgeComponent,
     SkeletonComponent,
   ],
   templateUrl: './certificate-verify.component.html',
