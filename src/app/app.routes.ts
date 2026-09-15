@@ -20,6 +20,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/public/course-detail/course-detail.component').then((m) => m.CourseDetailComponent),
       },
       {
+        path: 'teachers/:publicId',
+        loadComponent: () => import('./features/public/teacher-profile/teacher-profile.component').then((m) => m.TeacherProfileComponent),
+      },
+      {
         path: '403',
         loadComponent: () => import('./features/error-page/error-page.component').then((m) => m.ErrorPageComponent),
         data: { errorCode: '403' },
