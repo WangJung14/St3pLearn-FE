@@ -1,0 +1,48 @@
+<div class="wishlist-container">
+  <div class="page-header">
+    <h1 class="page-title">Khóa học yêu thích</h1>
+    <p class="page-desc">Các khóa học bạn đã lưu để đăng ký sau</p>
+  </div>
+
+  <div class="wishlist-grid">
+    @if (isLoading()) {
+      @for (i of [1, 2]; track i) {
+        <div class="card-skeleton">
+          <app-skeleton width="100%" height="180px" />
+          <div class="skeleton-body">
+            <app-skeleton width="80%" height="20px" />
+            <app-skeleton width="40%" height="16px" />
+          </div>
+        </div>
+      }
+    } @else if (wishlistItems().length === 0) {
+      <div class="empty-state">
+        <p>Danh sách yêu thích của bạn đang trống.</p>
+        <app-button variant="primary" routerLink="/courses">Khám phá khóa học ngay</app-button>
+      </div>
+    } @else {
+      @for (item of wishlistItems(); track item.id) {
+        <div class="wishlist-card">
+          <div class="thumb-wrap">
+            <img [src]="item.thumbnailUrl" [alt]="item.courseTitle" class="thumb-img" />
+            <button type="button" class="remove-btn" title="Xóa khỏi wishlist" (click)="onRemove(item.courseId)">
+              ✕
+            </button>
+          </div>
+
+          <div class="card-content">
+            <h3 class="course-title">{{ item.courseTitle }}</h3>
+            <div class="rating-badge">★ {{ item.avgRating }}</div>
+            <div class="price-row">
+              <span class="price-val">{{ item.price | currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+            </div>
+
+            <div class="card-actions">
+              <app-button variant="primary" (buttonClick)="onBuyNow(item.courseId)">Đăng ký ngay</app-button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

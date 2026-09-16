@@ -1,0 +1,67 @@
+<div class="profile-container">
+  <header class="profile-header">
+    <div class="user-avatar-wrap">
+      <img [src]="userProfile()?.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'" alt="Avatar" class="avatar-img" />
+    </div>
+    <div class="user-meta">
+      <h1 class="user-name">{{ userProfile()?.fullName || 'Học viên ST3P' }}</h1>
+      <p class="user-email">{{ userProfile()?.email || 'email@st3plearn.edu.vn' }}</p>
+      <span class="user-role-badge">Học viên chính thức</span>
+    </div>
+  </header>
+
+  <app-tabs [tabs]="tabs" [activeId]="activeTab()" (tabChange)="activeTab.set($event)" />
+
+  <div class="tab-content-area">
+    @if (activeTab() === 'personal') {
+      <form [formGroup]="profileForm" (ngSubmit)="onSaveProfile()" class="profile-form">
+        <app-form-field label="Họ và tên" [required]="true">
+          <app-input formControlName="fullName" placeholder="Nhập họ và tên đầy đủ" />
+        </app-form-field>
+
+        <app-form-field label="Mục tiêu CEFR">
+          <select formControlName="targetCefr" class="select-control">
+            <option value="A2">Cơ bản (A2)</option>
+            <option value="B1">Sơ trung cấp (B1)</option>
+            <option value="B2">Trung cấp (B2)</option>
+            <option value="C1">Nâng cao (C1)</option>
+          </select>
+        </app-form-field>
+
+        <app-form-field label="Giới thiệu bản thân (Bio)">
+          <textarea formControlName="bio" rows="4" class="textarea-control" placeholder="Viết đôi dòng về mục tiêu học tập..."></textarea>
+        </app-form-field>
+
+        <div class="form-actions">
+          <app-button type="submit" variant="primary" [loading]="isSaving()">Lưu thay đổi</app-button>
+        </div>
+      </form>
+    }
+
+    @if (activeTab() === 'security') {
+      <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()" class="password-form">
+        <app-form-field label="Mật khẩu hiện tại" [required]="true">
+          <app-input formControlName="oldPassword" type="password" placeholder="••••••••" />
+        </app-form-field>
+
+        <app-form-field label="Mật khẩu mới" [required]="true">
+          <app-input formControlName="newPassword" type="password" placeholder="Tối thiểu 8 ký tự" />
+        </app-form-field>
+
+        <app-form-field label="Xác nhận mật khẩu mới" [required]="true">
+          <app-input formControlName="confirmPassword" type="password" placeholder="Tối thiểu 8 ký tự" />
+        </app-form-field>
+
+        <div class="form-actions">
+          <app-button type="submit" variant="primary" [loading]="isSaving()">Cập nhật mật khẩu</app-button>
+        </div>
+      </form>
+    }
+
+    @if (activeTab() === 'history') {
+      <div class="logs-wrapper">
+        <app-data-table [columns]="tableColumns" [data]="loginLogs()" />
+      </div>
+    }
+  </div>
+</div>
