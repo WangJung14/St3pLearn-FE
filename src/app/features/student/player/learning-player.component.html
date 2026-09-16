@@ -1,0 +1,64 @@
+<div class="player-wrapper">
+  <header class="player-topbar">
+    <a routerLink="/dashboard/student/learning" class="back-link">← Quay lại khóa học</a>
+    <h2 class="lesson-header-title">{{ lesson()?.title || 'Đang tải bài học...' }}</h2>
+    <app-button variant="primary" size="sm" (buttonClick)="onCompleteLesson()">✓ Hoàn thành bài học</app-button>
+  </header>
+
+  <div class="player-main-area">
+    <div class="video-container">
+      @if (isLoading()) {
+        <div class="video-loader">
+          <app-spinner size="lg" />
+        </div>
+      } @else {
+        <video controls class="html5-video-player" [src]="lesson()?.videoUrl"></video>
+      }
+    </div>
+  </div>
+
+  <div class="player-discussion-area">
+    <app-tabs [tabs]="tabs" [activeId]="activeTab()" (tabChange)="activeTab.set($event)" />
+
+    <div class="tab-body">
+      @if (activeTab() === 'comments') {
+        <form [formGroup]="commentForm" (ngSubmit)="onPostComment()" class="comment-input-form">
+          <app-form-field label="Đặt câu hỏi hoặc thảo luận">
+            <textarea formControlName="content" rows="3" class="textarea-control" placeholder="Viết câu hỏi của bạn tại đây..."></textarea>
+          </app-form-field>
+          <app-button type="submit" variant="primary" [loading]="isPostingComment()">Gửi bình luận</app-button>
+        </form>
+
+        <div class="comments-list">
+          @for (cmt of comments(); track cmt.id) {
+            <div class="comment-item">
+              <div class="comment-avatar">
+                <img [src]="cmt.authorAvatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80'" alt="Avatar" />
+              </div>
+              <div class="comment-content">
+                <div class="comment-author-row">
+                  <span class="author-name">{{ cmt.authorName }}</span>
+                  <span class="comment-time">{{ cmt.createdAt }}</span>
+                </div>
+                <p class="comment-text">{{ cmt.content }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      @if (activeTab() === 'resources') {
+        <div class="resources-list">
+          <div class="resource-card">
+            <span>📄 Slide_Bai_14_Signals_RxJS.pdf</span>
+            <app-button variant="outline" size="sm">Tải về</app-button>
+          </div>
+          <div class="resource-card">
+            <span>💻 SourceCode_Lesson_14.zip</span>
+            <app-button variant="outline" size="sm">Tải về</app-button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

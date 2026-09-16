@@ -1,0 +1,44 @@
+<div class="flashcard-hub-container">
+  <div class="summary-banner">
+    <div class="banner-content">
+      <h1 class="banner-title">Trung tâm Từ vựng Spaced Repetition (SM-2)</h1>
+      <p class="banner-desc">Hệ thống gợi nhớ ngắt quãng giúp bạn ghi nhớ từ vựng lâu dài</p>
+    </div>
+    <div class="due-badge-box">
+      <span class="due-number">{{ totalDueCount() }}</span>
+      <span class="due-label">tẻ từ cần ôn hôm nay</span>
+    </div>
+  </div>
+
+  <div class="sets-grid">
+    @if (isLoading()) {
+      @for (i of [1, 2]; track i) {
+        <div class="card-skeleton">
+          <app-skeleton width="100%" height="160px" />
+        </div>
+      }
+    } @else {
+      @for (set of sets(); track set.id) {
+        <div class="set-card">
+          <div class="set-card-header">
+            <h3 class="set-title">{{ set.title }}</h3>
+            <app-badge variant="info">{{ set.cefrLevel || 'B2' }}</app-badge>
+          </div>
+
+          <p class="set-desc">{{ set.description }}</p>
+
+          <div class="set-meta">
+            <span>Tổng cộng: {{ set.totalCards }} từ</span>
+            <span class="due-count">Cần ôn: <strong>{{ set.dueCardsCount }}</strong></span>
+          </div>
+
+          <div class="set-actions">
+            <app-button variant="primary" (buttonClick)="onStartReview(set.id)">
+              Bắt đầu ôn tập ({{ set.dueCardsCount }})
+            </app-button>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

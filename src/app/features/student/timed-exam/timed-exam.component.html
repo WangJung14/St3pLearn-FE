@@ -1,0 +1,45 @@
+<div class="exam-wrapper">
+  <header class="exam-topbar">
+    <h2 class="exam-title">{{ examPayload()?.title }}</h2>
+    <div class="timer-box" [class.danger]="remainingSeconds() < 300">
+      <span>⏱️ Thời gian còn lại:</span>
+      <strong class="timer-val">{{ formattedTimer }}</strong>
+    </div>
+  </header>
+
+  <div class="exam-main-container">
+    @if (isLoading()) {
+      <div class="loader-wrap">
+        <app-spinner size="lg" />
+      </div>
+    } @else {
+      <main class="question-content">
+        @for (q of examPayload()?.questions; track q.id; let idx = $index) {
+          <div class="question-card">
+            <h3 class="q-stem">Câu {{ idx + 1 }}: {{ q.stem }}</h3>
+
+            <div class="options-group">
+              @for (opt of q.options; track opt; let optIdx = $index) {
+                <label class="option-row" [class.selected]="selectedAnswers()[q.id] === optIdx">
+                  <input
+                    type="radio"
+                    [name]="'q_' + q.id"
+                    [checked]="selectedAnswers()[q.id] === optIdx"
+                    (change)="selectOption(q.id, optIdx)"
+                  />
+                  <span>{{ opt }}</span>
+                </label>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="submit-footer">
+          <app-button variant="primary" size="lg" [loading]="isSubmitting()" (buttonClick)="onSubmitExam()">
+            Nộp bài thi ngay
+          </app-button>
+        </div>
+      </main>
+    }
+  </div>
+</div>
