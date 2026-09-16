@@ -1,0 +1,35 @@
+<div class="orders-container">
+  <div class="page-header">
+    <h1 class="page-title">Lịch sử đơn hàng</h1>
+    <p class="page-desc">Quản lý hóa đơn mua khóa học và yêu cầu hoàn tiền trong 7 ngày</p>
+  </div>
+
+  <div class="orders-table-card">
+    <app-data-table [columns]="tableColumns" [data]="orders()">
+      <ng-template #cell let-row="row" let-column="column">
+        @if (column.key === 'amount') {
+          <span>{{ row.amount | currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+        } @else if (column.key === 'status') {
+          <app-badge [variant]="row.status === 'SUCCESS' ? 'success' : 'danger'">
+            {{ row.status === 'SUCCESS' ? 'Đã thanh toán' : 'Đã hoàn tiền' }}
+          </app-badge>
+        } @else {
+          <span>{{ row[column.key] }}</span>
+        }
+      </ng-template>
+    </app-data-table>
+  </div>
+
+  <app-modal [isOpen]="isModalOpen()" title="Yêu cầu hoàn tiền" (closeModal)="closeRefundModal()">
+    <form [formGroup]="refundForm" (ngSubmit)="onSubmitRefund()" class="refund-form">
+      <app-form-field label="Lý do hoàn tiền (Tối thiểu 10 ký tự)" [required]="true">
+        <textarea formControlName="reason" rows="4" class="textarea-control" placeholder="Nhập lý do chi tiết..."></textarea>
+      </app-form-field>
+
+      <div class="modal-actions">
+        <app-button variant="secondary" (buttonClick)="closeRefundModal()">Hủy</app-button>
+        <app-button type="submit" variant="primary" [loading]="isSubmittingRefund()">Gửi yêu cầu</app-button>
+      </div>
+    </form>
+  </app-modal>
+</div>

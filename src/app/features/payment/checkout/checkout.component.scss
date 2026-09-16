@@ -1,0 +1,122 @@
+.checkout-container {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  .checkout-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+
+    .checkout-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-summary-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 1.5rem;
+
+      .course-thumb {
+        width: 100px;
+        height: 65px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .course-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      .badge-tag {
+        font-size: 0.75rem;
+        color: #6366f1;
+        font-weight: 600;
+      }
+    }
+
+    .coupon-box {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .price-breakdown {
+      background: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+
+      .price-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.95rem;
+        color: #475569;
+        margin-bottom: 0.5rem;
+
+        &.discount {
+          color: #10b981;
+          font-weight: 600;
+        }
+
+        &.total {
+          border-top: 1px solid #cbd5e1;
+          padding-top: 0.75rem;
+          margin-top: 0.75rem;
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #0f172a;
+
+          .total-val {
+            color: #4f46e5;
+          }
+        }
+      }
+    }
+
+    .payment-method-block {
+      margin-bottom: 1.5rem;
+
+      .method-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 0.5rem;
+      }
+
+      .method-card {
+        border: 2px solid #6366f1;
+        background: #f5f3ff;
+        padding: 1rem;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+
+        .vnpay-logo {
+          font-weight: 700;
+          color: #4f46e5;
+        }
+
+        .method-desc {
+          font-size: 0.8rem;
+          color: #64748b;
+        }
+      }
+    }
+
+    .checkout-actions {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
