@@ -1,0 +1,34 @@
+<div class="callback-container">
+  <div class="callback-card">
+    @if (isLoading()) {
+      <div class="loading-wrap">
+        <app-spinner size="lg" />
+        <p>Đang xác minh giao dịch với cổng VNPay...</p>
+      </div>
+    } @else {
+      @if (result()?.success) {
+        <div class="status-icon success">✓</div>
+        <h1 class="status-title">Thanh toán thành công!</h1>
+        <p class="status-msg">{{ result()?.message }}</p>
+
+        <div class="order-meta">
+          <span>Mã đơn hàng: <strong>{{ result()?.orderId }}</strong></span>
+        </div>
+
+        <div class="card-actions">
+          <app-button variant="primary" routerLink="/dashboard/student/learning">
+            Vào học ngay
+          </app-button>
+        </div>
+      } @else {
+        <div class="status-icon failure">✕</div>
+        <h1 class="status-title">Thanh toán thất bại</h1>
+        <p class="status-msg">{{ result()?.message }}</p>
+
+        <div class="card-actions">
+          <app-button variant="primary" routerLink="/courses">Thử lại giao dịch</app-button>
+        </div>
+      }
+    }
+  </div>
+</div>

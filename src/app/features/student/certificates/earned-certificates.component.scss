@@ -1,0 +1,86 @@
+.certificates-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  .page-header {
+    margin-bottom: 2rem;
+
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .page-desc {
+      color: #64748b;
+    }
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+
+    .cert-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+      .cert-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        .cert-seal {
+          font-weight: 700;
+          color: #4f46e5;
+        }
+      }
+
+      .course-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+      }
+
+      .cert-code,
+      .issued-date {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 0.25rem;
+      }
+
+      .cert-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px dashed #cbd5e1;
+
+      p {
+        color: #64748b;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

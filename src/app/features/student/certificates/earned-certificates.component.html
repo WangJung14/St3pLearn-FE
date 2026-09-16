@@ -1,0 +1,41 @@
+<div class="certificates-container">
+  <div class="page-header">
+    <h1 class="page-title">Bộ sưu tập chứng chỉ của tôi</h1>
+    <p class="page-desc">Các chứng chỉ hoàn thành khóa học được hệ thống cấp chính thức</p>
+  </div>
+
+  <div class="certs-grid">
+    @if (isLoading()) {
+      @for (i of [1]; track i) {
+        <div class="card-skeleton">
+          <app-skeleton width="100%" height="220px" />
+        </div>
+      }
+    } @else if (certificates().length === 0) {
+      <div class="empty-state">
+        <p>Bạn chưa hoàn thành khóa học nào để nhận chứng chỉ.</p>
+        <app-button variant="primary" routerLink="/dashboard/student/learning">Vào học ngay</app-button>
+      </div>
+    } @else {
+      @for (cert of certificates(); track cert.id) {
+        <div class="cert-card">
+          <div class="cert-card-header">
+            <span class="cert-seal">🎓 Certificate</span>
+            <app-badge variant="success">Đã xác minh</app-badge>
+          </div>
+
+          <h3 class="course-title">{{ cert.courseTitle }}</h3>
+          <p class="cert-code">Mã số: <strong>{{ cert.certificateCode }}</strong></p>
+          <p class="issued-date">Ngày cấp: {{ cert.issuedAt }}</p>
+
+          <div class="cert-actions">
+            <app-button variant="primary" (buttonClick)="onDownloadPdf(cert.id)">Tải PDF</app-button>
+            <app-button variant="outline" (buttonClick)="onCopyVerificationLink(cert.certificateCode)">
+              Sao chép link xác minh
+            </app-button>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

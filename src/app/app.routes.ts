@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
+import { PlayerLayoutComponent } from './layouts/player-layout/player-layout.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'certificates/verify/:code',
         loadComponent: () => import('./features/public/certificate-verify/certificate-verify.component').then((m) => m.CertificateVerifyComponent),
+      },
+      {
+        path: 'payment/callback',
+        loadComponent: () => import('./features/payment/callback/payment-callback.component').then((m) => m.PaymentCallbackComponent),
       },
       {
         path: '403',
@@ -80,8 +86,59 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'dashboard/student',
+    component: StudentLayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/student/profile/student-profile.component').then((m) => m.StudentProfileComponent),
+      },
+      {
+        path: 'learning',
+        loadComponent: () => import('./features/student/learning/student-learning.component').then((m) => m.StudentLearningComponent),
+      },
+      {
+        path: 'wishlist',
+        loadComponent: () => import('./features/student/wishlist/student-wishlist.component').then((m) => m.StudentWishlistComponent),
+      },
+      {
+        path: 'orders',
+        loadComponent: () => import('./features/student/orders/student-orders.component').then((m) => m.StudentOrdersComponent),
+      },
+      {
+        path: 'flashcards',
+        loadComponent: () => import('./features/student/flashcards/flashcards-hub.component').then((m) => m.FlashcardsHubComponent),
+      },
+      {
+        path: 'certificates',
+        loadComponent: () => import('./features/student/certificates/earned-certificates.component').then((m) => m.EarnedCertificatesComponent),
+      },
+    ],
+  },
+  {
+    path: '',
+    component: PlayerLayoutComponent,
+    children: [
+      {
+        path: 'payment/checkout/:courseId',
+        loadComponent: () => import('./features/payment/checkout/checkout.component').then((m) => m.CheckoutComponent),
+      },
+      {
+        path: 'dashboard/student/learning/:courseId/lessons/:lessonId',
+        loadComponent: () => import('./features/student/player/learning-player.component').then((m) => m.LearningPlayerComponent),
+      },
+      {
+        path: 'dashboard/student/flashcards/:setId/review',
+        loadComponent: () => import('./features/student/flashcard-trainer/flashcard-trainer.component').then((m) => m.FlashcardTrainerComponent),
+      },
+      {
+        path: 'dashboard/student/learning/:courseId/exams/:examId',
+        loadComponent: () => import('./features/student/timed-exam/timed-exam.component').then((m) => m.TimedExamComponent),
+      },
+    ],
+  },
+  {
     path: '**',
     redirectTo: '404',
   },
 ];
-

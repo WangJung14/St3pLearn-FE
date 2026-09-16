@@ -1,0 +1,51 @@
+<div class="checkout-container">
+  <div class="checkout-card">
+    <h1 class="checkout-title">Thanh toán khóa học</h1>
+
+    <div class="course-summary-row">
+      <img [src]="courseSummary().thumbnail" [alt]="courseSummary().title" class="course-thumb" />
+      <div class="course-info">
+        <h3 class="course-name">{{ courseSummary().title }}</h3>
+        <span class="badge-tag">Khóa học trực tuyến</span>
+      </div>
+    </div>
+
+    <form [formGroup]="couponForm" (ngSubmit)="onApplyCoupon()" class="coupon-box">
+      <app-input formControlName="code" placeholder="Mã giảm giá (ví dụ: ST3PSALE)" />
+      <app-button type="submit" variant="secondary" [loading]="isApplyingCoupon()">Áp dụng</app-button>
+    </form>
+
+    <div class="price-breakdown">
+      <div class="price-item">
+        <span>Giá gốc</span>
+        <span>{{ courseSummary().price | currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+      </div>
+
+      @if (appliedCoupon()) {
+        <div class="price-item discount">
+          <span>Giảm giá ({{ appliedCoupon()?.code }})</span>
+          <span>- {{ appliedCoupon()?.discountAmount | currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+        </div>
+      }
+
+      <div class="price-item total">
+        <span>Tổng thanh toán</span>
+        <span class="total-val">{{ finalPrice | currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+      </div>
+    </div>
+
+    <div class="payment-method-block">
+      <p class="method-title">Phương thức thanh toán</p>
+      <div class="method-card active">
+        <span class="vnpay-logo">VNPay Gateway</span>
+        <span class="method-desc">Thẻ ATM, QR Code, Internet Banking, Ví VNPay</span>
+      </div>
+    </div>
+
+    <div class="checkout-actions">
+      <app-button variant="primary" size="lg" [loading]="isSubmitting()" (buttonClick)="onCheckout()">
+        Thanh toán qua VNPay
+      </app-button>
+    </div>
+  </div>
+</div>

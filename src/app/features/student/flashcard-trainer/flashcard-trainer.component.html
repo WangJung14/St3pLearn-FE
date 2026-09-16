@@ -1,0 +1,49 @@
+<div class="trainer-wrapper">
+  <header class="trainer-topbar">
+    <a routerLink="/dashboard/student/flashcards" class="back-link">← Thoát ôn tập</a>
+    <span class="progress-indicator">Thẻ {{ currentIndex() + 1 }} / {{ cards().length }}</span>
+  </header>
+
+  @if (isCompleted()) {
+    <div class="summary-card">
+      <div class="award-icon">🎉</div>
+      <h2>Phiên ôn tập hoàn tất!</h2>
+      <p>Bạn đã hoàn thành xuất sắc các thẻ từ vựng cần ôn hôm nay.</p>
+      <app-button variant="primary" routerLink="/dashboard/student/flashcards">Quay về Hub từ vựng</app-button>
+    </div>
+  } @else if (currentCard; as card) {
+    <main class="trainer-main">
+      <div class="flip-card-container" [class.flipped]="isFlipped()" (click)="toggleFlip()">
+        <div class="card-inner">
+          <div class="card-front">
+            <span class="hint-tag">Mặt trước (Bấm Space hoặc Click để lật)</span>
+            <h1 class="vocab-word">{{ card.frontText }}</h1>
+            <p class="ipa-text">{{ card.ipa }}</p>
+          </div>
+
+          <div class="card-back">
+            <span class="hint-tag">Mặt sau</span>
+            <h2 class="vocab-meaning">{{ card.backText }}</h2>
+            <p class="vocab-definition">{{ card.definition }}</p>
+            <p class="vocab-example"><em>"{{ card.exampleSentence }}"</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rating-dock" [class.disabled]="!isFlipped()">
+        <button type="button" class="rating-btn rate-again" (click)="submitRating(0)">
+          <span>[1] Học lại</span>
+        </button>
+        <button type="button" class="rating-btn rate-hard" (click)="submitRating(2)">
+          <span>[2] Khó</span>
+        </button>
+        <button type="button" class="rating-btn rate-good" (click)="submitRating(4)">
+          <span>[3] Tốt</span>
+        </button>
+        <button type="button" class="rating-btn rate-easy" (click)="submitRating(5)">
+          <span>[4] Dễ</span>
+        </button>
+      </div>
+    </main>
+  }
+</div>

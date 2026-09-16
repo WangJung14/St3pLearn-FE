@@ -1,0 +1,61 @@
+<div class="my-learning-container">
+  <div class="page-header">
+    <h1 class="page-title">Khóa học của tôi</h1>
+    <p class="page-desc">Theo dõi tiến độ học tập và tiếp tục các bài học dở dang</p>
+  </div>
+
+  <app-tabs [tabs]="tabs" [activeId]="activeTab()" (tabChange)="onTabChange($event)" />
+
+  <div class="courses-grid">
+    @if (isLoading()) {
+      @for (i of [1, 2, 3]; track i) {
+        <div class="card-skeleton">
+          <app-skeleton width="100%" height="180px" />
+          <div class="skeleton-body">
+            <app-skeleton width="80%" height="20px" />
+            <app-skeleton width="50%" height="16px" />
+          </div>
+        </div>
+      }
+    } @else if (enrolledCourses().length === 0) {
+      <div class="empty-state">
+        <p>Bạn chưa đăng ký khóa học nào trong danh mục này.</p>
+        <app-button variant="primary" routerLink="/courses">Khám phá khóa học ngay</app-button>
+      </div>
+    } @else {
+      @for (course of enrolledCourses(); track course.enrollmentId) {
+        <div class="course-learning-card">
+          <div class="thumb-wrap">
+            <img [src]="course.thumbnailUrl" [alt]="course.courseTitle" class="thumb-img" />
+            <span class="status-chip" [class.completed]="course.status === 'COMPLETED'">
+              {{ course.status === 'COMPLETED' ? 'Đã hoàn thành' : 'Đang học' }}
+            </span>
+          </div>
+
+          <div class="card-content">
+            <h3 class="course-title">{{ course.courseTitle }}</h3>
+            <p class="last-lesson">
+              <strong>Bài gần nhất:</strong> {{ course.lastLessonTitle || 'Bài 1' }}
+            </p>
+
+            <div class="progress-bar-wrap">
+              <div class="progress-info">
+                <span>Tiến độ</span>
+                <span class="percent">{{ course.progressPercentage }}%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" [style.width.%]="course.progressPercentage"></div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <app-button variant="primary" (buttonClick)="onContinue(course)">
+                {{ course.status === 'COMPLETED' ? 'Xem lại bài học' : 'Tiếp tục học' }}
+              </app-button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>
